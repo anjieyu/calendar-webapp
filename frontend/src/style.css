@@ -1,3 +1,8 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: cornsilk;
@@ -16,4 +21,20 @@ h1 {
     max-width: 900px;
     margin: 24px auto;
     padding: 0 16px;
+}
+.calendar {
+    flex: 1;
+    background: lavenderblush;
+    border-radius: 8px;
+    padding: 16;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+.calendar-header h2 {
+    font-size: 18px;
 }
