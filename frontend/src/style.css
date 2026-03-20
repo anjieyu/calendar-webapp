@@ -38,3 +38,36 @@ h1 {
 .calendar-header h2 {
     font-size: 18px;
 }
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+.day-header {
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+    color: midnightblue;
+    padding: 4px 0;
+}
+.day-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    border-radius: 4px;
+    padding: 4px;
+    cursor: pointer;
+}
+.day-cell.empty {
+    cursor: default;
+}
+.day-cell.date {
+    background-color: lavenderblush;
+    color: midnightblue;
+}
+.day-cell.today {
+    background-color: midnightblue;
+    color: lavenderblush;
+}
