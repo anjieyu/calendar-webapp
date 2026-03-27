@@ -79,3 +79,6 @@ h1 {
     background-color: midnightblue;
     color: lavenderblush;
 }
+.day-cell.selected {
+    outline: 2px solid darkseagreen;
+}

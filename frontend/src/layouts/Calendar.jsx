@@ -17,10 +17,10 @@ export function Calendar(props) {
     }
 
     const prev_month = () => {
-        setMonth(m => m - 1);
+        setMonth(month() - 1);
     };
     const next_month = () => {
-        setMonth(m => m + 1);
+        setMonth(month() + 1);
     };
 
     return (
@@ -41,8 +41,10 @@ export function Calendar(props) {
                     const day = i+1;
                     const date = format_date(day);
                     const is_today = date === current_day;
+                    const is_selected = props.selectedDate() === date;
                     return(
-                        <div class={`day-cell ${is_today ? 'today' : 'date'}`}>{day}</div>
+                        <div class={`day-cell ${is_today ? 'today' : 'date'} ${is_selected ? 'selected' : ''}`}
+                        onClick={() => props.onSelectDay(date)}>{day}</div>
                     );
                 })}
             </div>
