@@ -16,10 +16,19 @@ export function Calendar(props) {
         return `${year()}-${mm}-${dd}`;
     }
 
+    const prev_month = () => {
+        setMonth(m => m - 1);
+    };
+    const next_month = () => {
+        setMonth(m => m + 1);
+    };
+
     return (
         <div class='calendar'>
             <div class='calendar-header'>
+                <button onClick={prev_month()}> - </button>
                 <h2>{MONTH_NAMES[month()]} {year()} {current_day}</h2>
+                <button onClick={next_month()}> + </button>
             </div>
             <div class='calendar-grid'>
                 {DAY_NAMES.map(name => (
