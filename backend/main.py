@@ -42,16 +42,31 @@ def root():
 
 @app.get("/events")
 def get_all_events():
-    return {"message": "return all event objects"}
+    connection = connect_db()
+    rows = connection.execute("SELECT * FROM events ORDER BY date").fetchall()
+    connection.close()
+    return [dict(row) for row in rows]
 
 @app.post("/events")
 def create_event(event: Event):
-    return {"message": "add the event to the database"}
+    connection = connect_db()
+    cursor = connection.execute("INSERT INTO events (title, date, description) VALUES (?, ?, ?)", (event.title, event.date, event.description))
+    connection.commit()
+    new_id = cursor.lastrowid
+    connection.close()
+    return {"id": new_id, "message": "event created"}
 
 @app.get("/events/{date}")
 def get_events_by_date(date: str):
-    return {"message": "get all events on a specific day"}
+    connection = connect_db()
+    rows = connection.execute("SELECT * FROM events WHERE date = ?", (date,)).fetchall()
+    connection.close()
+    return [dict(row) for row in rows]
 
 @app.delete("/events/{event_id}")
 def delete_event(event_id: int):
-    return {"message": "delete an event by a specific id"}
+    connection = connect_db()
+    connection.execute("DELETE FROM events WHERE id = ?", (event_id,))
+    connection.commit()
+    connection.close()
+    return {"message": "event deleted"}
