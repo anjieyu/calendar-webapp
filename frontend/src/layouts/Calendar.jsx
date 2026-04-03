@@ -17,18 +17,28 @@ export function Calendar(props) {
     }
 
     const prev_month = () => {
-        setMonth(month() - 1);
+        if (month() === 0) {
+            setMonth(11);
+            setYear(year() - 1);
+        } else {
+            setMonth(month() - 1);
+        }
     };
     const next_month = () => {
-        setMonth(month() + 1);
+        if (month() === 11) {
+            setMonth(0);
+            setYear(year() + 1);
+        } else {
+            setMonth(month() + 1);
+        }    
     };
 
     return (
         <div class='calendar'>
             <div class='calendar-header'>
-                <button onClick={prev_month()}> - </button>
-                <h2>{MONTH_NAMES[month()]} {year()} {current_day}</h2>
-                <button onClick={next_month()}> + </button>
+                <button onClick={prev_month}> - </button>
+                <h2>{MONTH_NAMES[month()]} {year()}</h2>
+                <button onClick={next_month}> + </button>
             </div>
             <div class='calendar-grid'>
                 {DAY_NAMES.map(name => (
