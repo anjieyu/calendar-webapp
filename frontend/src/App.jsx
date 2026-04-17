@@ -2,11 +2,22 @@ import {render} from 'solid-js/web';
 import {createSignal, onMount} from 'solid-js';
 import {Calendar} from './layouts/Calendar';
 import './style.css';
+import {EventPanel} from './layouts/EventPanel';
  
 function App() {
-    const [currentPage, setCurrentPage] = createSignal('home');
     const [selectedDate, setSelectedDate] = createSignal(null);
     const [allEvents, setAllEvents] = createSignal([]);
+    
+    const fetchAllEvents = async () => {
+        try {
+            const response = await fetch('http://localhost:8000/events');
+            const data = await response.json();
+            setAllEvents(data);
+        } catch(error) {
+            console.error("could not load events");
+        }
+    };
+
     return (
         <div>
             <h1>My Calendar</h1>
@@ -15,6 +26,11 @@ function App() {
                     selectedDate = {selectedDate}
                     onSelectDay = {setSelectedDate}
                     allEvents = {allEvents}
+                />
+                <EventPanel
+                    selectedDate = {selectedDate}
+                    allEvents = {allEvents}
+                    onEventChange = {fetchAllEvents}
                 />
             </div>
         </div>
