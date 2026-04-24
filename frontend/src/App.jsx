@@ -18,6 +18,8 @@ function App() {
         }
     };
 
+    onMount(fetchAllEvents);
+
     return (
         <div>
             <h1>My Calendar</h1>

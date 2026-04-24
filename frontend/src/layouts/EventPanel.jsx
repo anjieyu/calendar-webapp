@@ -46,6 +46,37 @@ export function EventPanel(props) {
             ) : (
                 <div>
                     <h3> {props.selectedDate()} </h3>
+                    <ul class="event-list">
+                        {getEvents().length === 0 && (
+                            <li><em>No events yet</em></li>
+                        )}
+                        {getEvents().map(event => (
+                            <div>
+                                <div class="event-title">{event.title}</div>
+                                {event.description && (
+                                    <div class="event-description">{event.description}</div>
+                                )}
+                            </div>
+                        ))}
+                    </ul>
+
+                    <div class="add-event">
+                        <h4> Add event </h4>
+                        <input
+                            type="text"
+                            placeholder="title"
+                            value={title()}
+                            onInput={e => setTitle(e.target.value)}>
+                        </input>
+                        <input
+                            type="text"
+                            placeholder="description"
+                            value={description()}
+                            onInput={e => setDescription(e.target.value)}>
+                        </input>
+                        <button onClick={addEvent}> Add Event </button>
+                        {message() && <p class="event-message"> {message()} </p>}
+                    </div>
                 </div>
             )}
         </div>

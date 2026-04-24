@@ -15,6 +15,13 @@ export function Calendar(props) {
         const dd = String(day).padStart(2, '0');
         return `${year()}-${mm}-${dd}`;
     }
+    const event_dates = () => {
+        const dates = new Set();
+        for (const event of props.allEvents()) {
+            dates.add(event.date);
+        }
+        return dates;
+    }
 
     const prev_month = () => {
         if (month() === 0) {
@@ -52,9 +59,13 @@ export function Calendar(props) {
                     const date = format_date(day);
                     const is_today = date === current_day;
                     const is_selected = props.selectedDate() === date;
+                    const has_events = event_dates().has(date);
                     return(
                         <div class={`day-cell ${is_today ? 'today' : 'date'} ${is_selected ? 'selected' : ''}`}
-                        onClick={() => props.onSelectDay(date)}>{day}</div>
+                        onClick={() => props.onSelectDay(date)}>
+                            {day}
+                            {has_events && <span class="event-marker">*</span>}
+                        </div>
                     );
                 })}
             </div>
