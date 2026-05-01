@@ -51,12 +51,15 @@ export function EventPanel(props) {
                             <li><em>No events yet</em></li>
                         )}
                         {getEvents().map(event => (
-                            <div>
-                                <div class="event-title">{event.title}</div>
-                                {event.description && (
-                                    <div class="event-description">{event.description}</div>
-                                )}
-                            </div>
+                            <li class="event-item">
+                                <div>
+                                    <div class="event-title">{event.title}</div>
+                                    {event.description && (
+                                        <div class="event-description">{event.description}</div>
+                                    )}
+                                </div>
+                                <button class="delete-button" onClick={() => deleteEvent(event.id)}> X </button> 
+                            </li>
                         ))}
                     </ul>
 

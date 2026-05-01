@@ -162,3 +162,15 @@ h1 {
     font-size: 13px;
     color: darkslategray;
 }
+.delete-button {
+    background: none;
+    border: none;
+    color: rgb(234, 56, 56);
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0 4px;
+    flex-shrink: 0;
+}
+.delete-button:hover {
+    color: red;
+}
