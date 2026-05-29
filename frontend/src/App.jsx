@@ -10,7 +10,7 @@ function App() {
     
     const fetchAllEvents = async () => {
         try {
-            const response = await fetch('http://localhost:8000/events');
+            const response = await fetch('https://api.calendar.anjieyu.net/events');
             const data = await response.json();
             setAllEvents(data);
         } catch(error) {
