@@ -6,7 +6,7 @@ from pydantic import BaseModel
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins = ["https://anjieyu.net"],
+    allow_origins = ["https://calendar.anjieyu.net"],
     allow_methods = ["*"],
     allow_headers = ["*"]
     )
