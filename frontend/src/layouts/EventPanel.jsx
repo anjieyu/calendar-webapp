@@ -11,7 +11,7 @@ export function EventPanel(props) {
 
     const addEvent = async () => {
         try {
-            await fetch('https://api.calendar.anjieyu.net/events', {
+            await fetch('https://calendar-api.anjieyu.net/events', {
                method: 'POST',
                headers: { 'Content-Type': 'application/json'},
                body: JSON.stringify({
@@ -30,7 +30,7 @@ export function EventPanel(props) {
     };
     const deleteEvent = async (event_id) => {
         try {
-            await fetch(`https://api.calendar.anjieyu.net/events/${event_id}`, {
+            await fetch(`https://calendar-api.anjieyu.net/events/${event_id}`, {
                 method: 'DELETE'
             });
             props.onEventChange();
